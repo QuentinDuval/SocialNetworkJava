@@ -1,4 +1,4 @@
-package com.qduval.socialnetwork.core;
+package com.qduval.socialnetwork.suggestions;
 
 import java.util.Set;
 

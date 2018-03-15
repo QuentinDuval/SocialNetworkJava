@@ -1,9 +1,10 @@
 package com.qduval.socialnetwork;
 
-import com.qduval.socialnetwork.core.ISuggestPosts;
-import com.qduval.socialnetwork.core.ProfileId;
 import com.qduval.socialnetwork.ports.LocalProfileApi;
-import com.qduval.socialnetwork.ports.RemoteProfileApi;
+import com.qduval.socialnetwork.ports.RemoteAsyncProfileApi;
+import com.qduval.socialnetwork.ports.RemoteBlockingProfileApi;
+import com.qduval.socialnetwork.suggestions.ISuggestPosts;
+import com.qduval.socialnetwork.suggestions.ProfileId;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,11 +17,11 @@ public class Main {
         System.out.println(local.suggestedPostsFor(new ProfileId(1)));
         System.out.println(local.suggestedPostsFor(new ProfileId(2)));
 
-        ISuggestPosts remote = RemoteProfileApi.suggestions();
+        ISuggestPosts remote = RemoteBlockingProfileApi.suggestions();
         System.out.println(remote.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remote.suggestedPostsFor(new ProfileId(2)));
 
-        ISuggestPosts remoteAsync = RemoteProfileApi.suggestionsAsync();
+        ISuggestPosts remoteAsync = RemoteAsyncProfileApi.suggestions();
         System.out.println(remoteAsync.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remoteAsync.suggestedPostsFor(new ProfileId(2)));
     }

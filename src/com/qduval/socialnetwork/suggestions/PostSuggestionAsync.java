@@ -1,4 +1,4 @@
-package com.qduval.socialnetwork.core;
+package com.qduval.socialnetwork.suggestions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.qduval.socialnetwork.core.Utils.stream;
+import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
 class PostSuggestionAsync implements ISuggestPosts {
     private final IAccessProfileInfo profileInfo;

@@ -1,6 +1,6 @@
 package com.qduval.socialnetwork.ports;
 
-import com.qduval.socialnetwork.core.*;
+import com.qduval.socialnetwork.suggestions.*;
 
 public class LocalProfileApi {
     public static ISuggestPosts suggestions() {

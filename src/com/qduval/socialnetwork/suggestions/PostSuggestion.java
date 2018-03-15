@@ -1,4 +1,4 @@
-package com.qduval.socialnetwork.core;
+package com.qduval.socialnetwork.suggestions;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.qduval.socialnetwork.core.Utils.stream;
+import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
 class PostSuggestion implements ISuggestPosts {
     private final IAccessProfileInfo profileInfo;

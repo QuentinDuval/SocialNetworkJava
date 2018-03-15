@@ -1,9 +1,9 @@
 package com.qduval.socialnetwork.ports;
 
-import com.qduval.socialnetwork.core.IAccessProfileInfo;
-import com.qduval.socialnetwork.core.PostSummary;
-import com.qduval.socialnetwork.core.ProfileId;
-import com.qduval.socialnetwork.core.Topic;
+import com.qduval.socialnetwork.suggestions.IAccessProfileInfo;
+import com.qduval.socialnetwork.suggestions.PostSummary;
+import com.qduval.socialnetwork.suggestions.ProfileId;
+import com.qduval.socialnetwork.suggestions.Topic;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
