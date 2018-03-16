@@ -1,7 +1,9 @@
 package com.qduval.socialnetwork.suggestions.async;
 
+import com.qduval.socialnetwork.suggestions.ISuggestPosts;
+
 public class Api {
-    public static ISuggestPostsAsync suggestions(IAccessProfileInfoAsync profileInfo) {
+    public static ISuggestPosts suggestions(IAccessProfileInfoAsync profileInfo) {
         return new PostSuggestionAsync(profileInfo);
     }
 }
