@@ -1,4 +1,6 @@
-package com.qduval.socialnetwork.suggestions;
+package com.qduval.socialnetwork.suggestions.sync;
+
+import com.qduval.socialnetwork.suggestions.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,34 +19,21 @@ class PostSuggestion implements ISuggestPosts {
         Iterable<ProfileId> friendIds = friendsOf(profileId);
         Set<Topic> topics = favoriteTopicsOf(profileId);
         Stream<PostSummary> interestingPosts = stream(friendIds)
-                // .parallel() // Easy parallelism
                 .flatMap(friendId -> lastPostsOf(friendId))
                 .filter(post -> post.isAbout(topics));
         return mostLiked(3, interestingPosts);
     }
 
     private Iterable<ProfileId> friendsOf(ProfileId profileId) {
-        try {
-            return profileInfo.friendsOf(profileId).get();
-        } catch (Exception e) {
-            return Arrays.asList();
-        }
+        return profileInfo.friendsOf(profileId);
     }
 
     private Set<Topic> favoriteTopicsOf(ProfileId profileId) {
-        try {
-            return profileInfo.favoriteTopicsOf(profileId).get();
-        } catch (Exception e) {
-            return new HashSet<>();
-        }
+        return profileInfo.favoriteTopicsOf(profileId);
     }
 
     private Stream<PostSummary> lastPostsOf(ProfileId profileId) {
-        try {
-            return stream(profileInfo.lastPostsOf(profileId).get());
-        } catch (Exception e) {
-            return stream(Arrays.asList());
-        }
+        return stream(profileInfo.lastPostsOf(profileId));
     }
 
     private List<PostSummary> mostLiked(int count, Stream<PostSummary> posts) {

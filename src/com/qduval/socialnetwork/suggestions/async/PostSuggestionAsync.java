@@ -1,4 +1,8 @@
-package com.qduval.socialnetwork.suggestions;
+package com.qduval.socialnetwork.suggestions.async;
+
+import com.qduval.socialnetwork.suggestions.PostSummary;
+import com.qduval.socialnetwork.suggestions.ProfileId;
+import com.qduval.socialnetwork.suggestions.Topic;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -11,10 +15,10 @@ import java.util.stream.Stream;
 
 import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
-class PostSuggestionAsync implements ISuggestPosts {
-    private final IAccessProfileInfo profileInfo;
+class PostSuggestionAsync implements ISuggestPostsAsync {
+    private final IAccessProfileInfoAsync profileInfo;
 
-    PostSuggestionAsync(IAccessProfileInfo profileInfo) {
+    PostSuggestionAsync(IAccessProfileInfoAsync profileInfo) {
         this.profileInfo = profileInfo;
     }
 

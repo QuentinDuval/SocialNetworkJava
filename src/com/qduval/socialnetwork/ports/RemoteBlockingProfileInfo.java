@@ -1,6 +1,6 @@
 package com.qduval.socialnetwork.ports;
 
-import com.qduval.socialnetwork.suggestions.IAccessProfileInfo;
+import com.qduval.socialnetwork.suggestions.sync.IAccessProfileInfo;
 import com.qduval.socialnetwork.suggestions.PostSummary;
 import com.qduval.socialnetwork.suggestions.ProfileId;
 import com.qduval.socialnetwork.suggestions.Topic;
@@ -19,45 +19,45 @@ class RemoteBlockingProfileInfo implements IAccessProfileInfo {
     }
 
     @Override
-    public Future<Iterable<ProfileId>> friendsOf(ProfileId profileId) {
+    public Iterable<ProfileId> friendsOf(ProfileId profileId) {
         Iterable<ProfileId> friends = cache.friendsOf(profileId);
         if (friends != null)
-            return CompletableFuture.completedFuture(friends);
+            return friends;
 
         System.out.println("Query for friends of " + profileId);
         sleep();
         friends = realData.friendsOf(profileId);
         for (ProfileId profile : friends)
             cache.addFriends(profileId, profile);
-        return CompletableFuture.completedFuture(friends);
+        return friends;
     }
 
     @Override
-    public Future<Set<Topic>> favoriteTopicsOf(ProfileId profileId) {
+    public Set<Topic> favoriteTopicsOf(ProfileId profileId) {
         Set<Topic> topics = cache.favoriteTopicsOf(profileId);
         if (topics != null)
-            return CompletableFuture.completedFuture(topics);
+            return topics;
 
         System.out.println("Query for topics of " + profileId);
         sleep();
         topics = realData.favoriteTopicsOf(profileId);
         for (Topic topic : topics)
             cache.addSubjects(profileId, topic);
-        return CompletableFuture.completedFuture(topics);
+        return topics;
     }
 
     @Override
-    public Future<Iterable<PostSummary>> lastPostsOf(ProfileId profileId) {
+    public Iterable<PostSummary> lastPostsOf(ProfileId profileId) {
         Iterable<PostSummary> posts = cache.lastPostsOf(profileId);
         if (posts != null)
-            return CompletableFuture.completedFuture(posts);
+            return posts;
 
         System.out.println("Query for posts of " + profileId);
         sleep();
         posts = realData.lastPostsOf(profileId);
         for (PostSummary post : posts)
             cache.addPosts(profileId, post);
-        return CompletableFuture.completedFuture(posts);
+        return posts;
     }
 
     private void sleep() {

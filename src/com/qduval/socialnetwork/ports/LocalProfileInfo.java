@@ -1,6 +1,6 @@
 package com.qduval.socialnetwork.ports;
 
-import com.qduval.socialnetwork.suggestions.IAccessProfileInfo;
+import com.qduval.socialnetwork.suggestions.sync.IAccessProfileInfo;
 import com.qduval.socialnetwork.suggestions.PostSummary;
 import com.qduval.socialnetwork.suggestions.ProfileId;
 import com.qduval.socialnetwork.suggestions.Topic;
@@ -17,17 +17,17 @@ class LocalProfileInfo implements IAccessProfileInfo {
     }
 
     @Override
-    public Future<Iterable<ProfileId>> friendsOf(ProfileId profileId) {
-        return CompletableFuture.completedFuture(profiles.friendsOf(profileId));
+    public Iterable<ProfileId> friendsOf(ProfileId profileId) {
+        return profiles.friendsOf(profileId);
     }
 
     @Override
-    public Future<Set<Topic>> favoriteTopicsOf(ProfileId profileId) {
-        return CompletableFuture.completedFuture(profiles.favoriteTopicsOf(profileId));
+    public Set<Topic> favoriteTopicsOf(ProfileId profileId) {
+        return profiles.favoriteTopicsOf(profileId);
     }
 
     @Override
-    public Future<Iterable<PostSummary>> lastPostsOf(ProfileId profileId) {
-        return CompletableFuture.completedFuture(profiles.lastPostsOf(profileId));
+    public Iterable<PostSummary> lastPostsOf(ProfileId profileId) {
+        return profiles.lastPostsOf(profileId);
     }
 }

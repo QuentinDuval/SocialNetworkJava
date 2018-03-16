@@ -1,6 +1,7 @@
 package com.qduval.socialnetwork.ports;
 
-import com.qduval.socialnetwork.suggestions.IAccessProfileInfo;
+import com.qduval.socialnetwork.suggestions.async.IAccessProfileInfoAsync;
+import com.qduval.socialnetwork.suggestions.sync.IAccessProfileInfo;
 import com.qduval.socialnetwork.suggestions.PostSummary;
 import com.qduval.socialnetwork.suggestions.ProfileId;
 import com.qduval.socialnetwork.suggestions.Topic;
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
-class RemoteAsyncProfileInfo implements IAccessProfileInfo {
+class RemoteAsyncProfileInfo implements IAccessProfileInfoAsync {
     private final ProfileRepository realData;
     private final ConcurrentHashMap<ProfileId, CompletableFuture<ArrayList<ProfileId>>> cachedFriends = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<ProfileId, CompletableFuture<HashSet<Topic>>> cachedTopics = new ConcurrentHashMap<>();
