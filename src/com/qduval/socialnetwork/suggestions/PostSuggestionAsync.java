@@ -1,6 +1,7 @@
 package com.qduval.socialnetwork.suggestions;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -53,7 +54,7 @@ class PostSuggestionAsync implements ISuggestPosts {
 
     private List<PostSummary> mostLiked(int count, Stream<PostSummary> posts) {
         return posts
-                .sorted((lhs, rhs) -> rhs.getLikesCount() - lhs.getLikesCount())
+                .sorted(Comparator.comparing(PostSummary::getLikesCount))
                 .limit(count)
                 .collect(Collectors.toList());
     }

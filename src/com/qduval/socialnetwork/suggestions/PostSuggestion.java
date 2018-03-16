@@ -1,9 +1,6 @@
 package com.qduval.socialnetwork.suggestions;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -52,7 +49,7 @@ class PostSuggestion implements ISuggestPosts {
 
     private List<PostSummary> mostLiked(int count, Stream<PostSummary> posts) {
         return posts
-                .sorted((lhs, rhs) -> rhs.getLikesCount() - lhs.getLikesCount())
+                .sorted(Comparator.comparing(PostSummary::getLikesCount))
                 .limit(count)
                 .collect(Collectors.toList());
     }
