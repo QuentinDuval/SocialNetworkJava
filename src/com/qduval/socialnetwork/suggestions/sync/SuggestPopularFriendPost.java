@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 
 import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
-class PostSuggestion implements IComputePostSuggestions {
+class SuggestPopularFriendPost implements IComputePostSuggestions {
     private final IAccessProfileInfo profileInfo;
 
-    PostSuggestion(IAccessProfileInfo profileInfo) {
+    SuggestPopularFriendPost(IAccessProfileInfo profileInfo) {
         this.profileInfo = profileInfo;
     }
 

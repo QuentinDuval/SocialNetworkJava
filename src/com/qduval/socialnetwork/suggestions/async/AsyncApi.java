@@ -4,6 +4,6 @@ import com.qduval.socialnetwork.suggestions.IComputePostSuggestions;
 
 public class AsyncApi {
     public static IComputePostSuggestions suggestions(IAccessProfileInfoAsync profileInfo) {
-        return new PostSuggestionAsync(profileInfo);
+        return new SuggestPopularFriendPost(profileInfo);
     }
 }
