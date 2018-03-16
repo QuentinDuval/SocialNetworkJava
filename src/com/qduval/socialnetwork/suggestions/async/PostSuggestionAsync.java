@@ -1,9 +1,6 @@
 package com.qduval.socialnetwork.suggestions.async;
 
-import com.qduval.socialnetwork.suggestions.ISuggestPosts;
-import com.qduval.socialnetwork.suggestions.PostSummary;
-import com.qduval.socialnetwork.suggestions.ProfileId;
-import com.qduval.socialnetwork.suggestions.Topic;
+import com.qduval.socialnetwork.suggestions.*;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -16,13 +13,14 @@ import java.util.stream.Stream;
 
 import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
-class PostSuggestionAsync implements ISuggestPosts {
+class PostSuggestionAsync implements IComputePostSuggestions {
     private final IAccessProfileInfoAsync profileInfo;
 
     PostSuggestionAsync(IAccessProfileInfoAsync profileInfo) {
         this.profileInfo = profileInfo;
     }
 
+    @Override
     public Iterable<PostSummary> suggestedPostsFor(ProfileId profileId) {
         try {
             Future<Iterable<ProfileId>> friendIds = friendsOf(profileId);

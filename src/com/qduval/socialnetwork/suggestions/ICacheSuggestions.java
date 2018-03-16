@@ -1,6 +1,6 @@
 package com.qduval.socialnetwork.suggestions;
 
 public interface ICacheSuggestions {
-    void saveSuggestions(Iterable<PostSummary> suggestions);
-    Iterable<PostSummary> loadSuggestions();
+    void saveSuggestions(ProfileId profileId, Iterable<PostSummary> suggestions);
+    Iterable<PostSummary> loadSuggestions(ProfileId profileId);
 }

@@ -19,6 +19,7 @@ public class Main {
 
         ISuggestPosts local = LocalProfileApi.suggestions();
         System.out.println(local.suggestedPostsFor(new ProfileId(1)));
+        System.out.println(local.suggestedPostsFor(new ProfileId(1)));
         System.out.println(local.suggestedPostsFor(new ProfileId(2)));
 
         System.out.println("----------------");
@@ -27,6 +28,7 @@ public class Main {
 
         ISuggestPosts remote = RemoteBlockingProfileApi.suggestions();
         System.out.println(remote.suggestedPostsFor(new ProfileId(1)));
+        System.out.println(remote.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remote.suggestedPostsFor(new ProfileId(2)));
 
         System.out.println("----------------");
@@ -34,6 +36,7 @@ public class Main {
         System.out.println("----------------");
 
         ISuggestPosts remoteAsync = RemoteAsyncProfileApi.suggestions();
+        System.out.println(remoteAsync.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remoteAsync.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remoteAsync.suggestedPostsFor(new ProfileId(2)));
     }

@@ -8,13 +8,14 @@ import java.util.stream.Stream;
 
 import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
-class PostSuggestion implements ISuggestPosts {
+class PostSuggestion implements IComputePostSuggestions {
     private final IAccessProfileInfo profileInfo;
 
     PostSuggestion(IAccessProfileInfo profileInfo) {
         this.profileInfo = profileInfo;
     }
 
+    @Override
     public Iterable<PostSummary> suggestedPostsFor(ProfileId profileId) {
         Iterable<ProfileId> friendIds = friendsOf(profileId);
         Set<Topic> topics = favoriteTopicsOf(profileId);

@@ -1,12 +1,11 @@
 package com.qduval.socialnetwork.ports;
 
 import com.qduval.socialnetwork.suggestions.*;
-import com.qduval.socialnetwork.suggestions.sync.Api;
 import com.qduval.socialnetwork.suggestions.ISuggestPosts;
 
 public class LocalProfileApi {
     public static ISuggestPosts suggestions() {
-        return Api.suggestions(new LocalProfileInfo(fakeDb()));
+        return Api.suggestPosts(new LocalProfileInfo(fakeDb()), new SuggestionCache());
     }
 
     static ProfileRepository fakeDb() {
