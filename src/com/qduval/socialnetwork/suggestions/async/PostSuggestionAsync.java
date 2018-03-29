@@ -57,7 +57,7 @@ class PostSuggestionAsync implements IComputePostSuggestions {
 
     private List<PostSummary> mostLiked(int count, Stream<PostSummary> posts) {
         return posts
-                .sorted(Comparator.comparing(PostSummary::getLikesCount))
+                .sorted(Collections.reverseOrder(Comparator.comparing(PostSummary::getLikesCount)))
                 .limit(count)
                 .collect(Collectors.toList());
     }
