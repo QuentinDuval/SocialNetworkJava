@@ -14,6 +14,7 @@ public class Main {
 
     private static void exampleOfClientCode() {
 
+        /*
         System.out.println("----------------");
         System.out.println("LOCAL API");
         System.out.println("----------------");
@@ -31,6 +32,7 @@ public class Main {
         System.out.println(remote.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remote.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remote.suggestedPostsFor(new ProfileId(2)));
+        */
 
         System.out.println("----------------");
         System.out.println("REMOTE ASYNC API");
