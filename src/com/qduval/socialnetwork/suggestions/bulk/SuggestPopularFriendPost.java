@@ -1,4 +1,4 @@
-package com.qduval.socialnetwork.suggestions.async;
+package com.qduval.socialnetwork.suggestions.bulk;
 
 import com.qduval.socialnetwork.suggestions.IComputePostSuggestions;
 import com.qduval.socialnetwork.suggestions.PostSummary;
@@ -14,43 +14,39 @@ import java.util.stream.Stream;
 import static com.qduval.socialnetwork.suggestions.Utils.stream;
 
 class SuggestPopularFriendPost implements IComputePostSuggestions {
-    private final IAccessProfileInfoAsync profileInfo;
+    private final IAccessProfileInfoBulk profileInfo;
 
-    SuggestPopularFriendPost(IAccessProfileInfoAsync profileInfo) {
+    SuggestPopularFriendPost(IAccessProfileInfoBulk profileInfo) {
         this.profileInfo = profileInfo;
     }
 
     @Override
     public Iterable<PostSummary> suggestedPostsFor(ProfileId profileId) {
         try {
-            Future<Iterable<ProfileId>> friendIds = friendsOf(profileId);
+            Fetch<Iterable<ProfileId>> friendIds = friendsOf(profileId);
             Set<Topic> topics = favoriteTopicsOf(profileId).get();
             Stream<PostSummary> interestingPosts = stream(friendIds.get())
                     .parallel()
                     .flatMap(friendId -> lastPostsOf(friendId))
                     .filter(post -> post.isAbout(topics));
             return mostLiked(3, interestingPosts);
-        } catch (InterruptedException e) {
-            return Arrays.asList();
-        } catch (ExecutionException e) {
+        } catch (FetchError e) {
             return Arrays.asList();
         }
     }
 
-    private Future<Iterable<ProfileId>> friendsOf(ProfileId profileId) {
+    private Fetch<Iterable<ProfileId>> friendsOf(ProfileId profileId) {
         return profileInfo.friendsOf(profileId);
     }
 
-    private Future<Set<Topic>> favoriteTopicsOf(ProfileId profileId) {
+    private Fetch<Set<Topic>> favoriteTopicsOf(ProfileId profileId) {
         return profileInfo.favoriteTopicsOf(profileId);
     }
 
     private Stream<PostSummary> lastPostsOf(ProfileId profileId) {
         try {
             return stream(profileInfo.lastPostsOf(profileId).get());
-        } catch (InterruptedException e) {
-            return stream(Arrays.asList());
-        } catch (ExecutionException e) {
+        } catch (FetchError e) {
             return stream(Arrays.asList());
         }
     }
