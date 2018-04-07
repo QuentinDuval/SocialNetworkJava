@@ -51,6 +51,5 @@ public class Main {
         System.out.println(remoteBulk.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remoteBulk.suggestedPostsFor(new ProfileId(1)));
         System.out.println(remoteBulk.suggestedPostsFor(new ProfileId(2)));
-
     }
 }
